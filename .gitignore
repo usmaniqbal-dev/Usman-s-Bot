@@ -1,0 +1,8 @@
+node_modules/
+.npm-cache/
+.vercel/
+.env
+chatbot-groq/node_modules/
+chatbot-groq/.npm-cache/
+chatbot-groq/.vercel/
+chatbot-groq/.env
