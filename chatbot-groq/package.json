@@ -1,0 +1,26 @@
+{
+  "name": "chatbot-groq",
+  "version": "1.0.0",
+  "description": "Simple AI chatbot website using Groq Cloud API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "build": "echo \"No build step required\""
+  },
+  "keywords": [
+    "chatbot",
+    "groq",
+    "express",
+    "ai"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}
