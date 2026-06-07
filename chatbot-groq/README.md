@@ -96,9 +96,11 @@ vercel --prod
 
 - Do not add your real Groq key to frontend JavaScript.
 - Do not commit `.env`.
+- Vercel does not read your local `.env` file automatically. Add `GROQ_API_KEY` in Vercel Project Settings > Environment Variables.
 - The frontend calls `/api/chat`.
 - On Vercel, `/api/chat` runs from `api/chat.js` as a serverless function.
 - Locally, `/api/chat` runs from `server.js` through Express.
+- You can check `/api/health`; `groqKeyConfigured` should be `true`.
 
 ## Project Structure
 

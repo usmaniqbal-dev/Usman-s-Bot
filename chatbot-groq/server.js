@@ -1,8 +1,9 @@
 const path = require("path");
 const express = require("express");
 const dotenv = require("dotenv");
-const { getGroqReply } = require("./lib/groqChat");
+const { getGroqReply, isGroqKeyConfigured } = require("./lib/groqChat");
 
+dotenv.config({ path: path.join(__dirname, ".env") });
 dotenv.config();
 
 const app = express();
@@ -39,6 +40,7 @@ app.get("/api/health", (req, res) => {
   res.json({
     success: true,
     status: "Running",
+    groqKeyConfigured: isGroqKeyConfigured(),
     timestamp: new Date().toISOString(),
   });
 });

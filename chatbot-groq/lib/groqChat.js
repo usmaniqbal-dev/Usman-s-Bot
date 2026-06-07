@@ -1,5 +1,12 @@
+const path = require("path");
+const dotenv = require("dotenv");
+
 const DEFAULT_MODEL = "llama-3.1-8b-instant";
 const PLACEHOLDER_KEY = "USMAN_IQBAL_API_KEY";
+
+dotenv.config({ path: path.join(__dirname, "..", ".env") });
+dotenv.config({ path: path.join(__dirname, "..", "..", ".env") });
+dotenv.config();
 
 function parseMessage(body) {
   if (!body) {
@@ -18,12 +25,21 @@ function parseMessage(body) {
   return typeof body?.message === "string" ? body.message.trim() : "";
 }
 
+function getGroqApiKey() {
+  return process.env.GROQ_API_KEY || process.env.GROQ_KEY || "";
+}
+
+function isGroqKeyConfigured() {
+  const apiKey = getGroqApiKey();
+  return Boolean(apiKey && apiKey !== PLACEHOLDER_KEY);
+}
+
 async function getGroqReply(body) {
   const message = parseMessage(body);
-  const apiKey = process.env.GROQ_API_KEY;
+  const apiKey = getGroqApiKey();
   const model = process.env.GROQ_MODEL || DEFAULT_MODEL;
 
-  if (!apiKey || apiKey === PLACEHOLDER_KEY) {
+  if (!isGroqKeyConfigured()) {
     return {
       status: 500,
       body: {
@@ -97,5 +113,6 @@ async function getGroqReply(body) {
 }
 
 module.exports = {
-  getGroqReply
+  getGroqReply,
+  isGroqKeyConfigured
 };

@@ -23,6 +23,22 @@ GROQ_MODEL=llama-3.1-8b-instant
 
 Do not upload your real `.env` file.
 
+Important: Vercel does not use your local `.env` file automatically. You must add `GROQ_API_KEY` in the Vercel dashboard.
+
+After deploy, open this URL to confirm the key is configured without exposing it:
+
+```text
+https://your-vercel-domain.vercel.app/api/health
+```
+
+It should show:
+
+```json
+{
+  "groqKeyConfigured": true
+}
+```
+
 ## Deploy
 
 After adding environment variables, click `Deploy`.
